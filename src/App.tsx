@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import { useState } from "react"
+import styled, { keyframes } from "styled-components"
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
 
   return (
     <Wrapper>
@@ -16,44 +16,44 @@ function App() {
       </div>
       <h1>Varsarr</h1>
       <div>
-        <a href="https://vitejs.dev/" target="_blank">
+        <a href="https://vitejs.dev/" target="_blank" rel="noreferrer">
           <p>Vite</p>
         </a>
-        <a href="https://axios-http.com/" target="_blank">
+        <a href="https://axios-http.com/" target="_blank" rel="noreferrer">
           <p>Axios</p>
         </a>
-        <a href="https://reactjs.org/" target="_blank">
+        <a href="https://reactjs.org/" target="_blank" rel="noreferrer">
           <p>React</p>
         </a>
-        <a href="https://styled-components.com/" target="_blank">
+        <a href="https://styled-components.com/" target="_blank" rel="noreferrer">
           <p>Styled-Components</p>
         </a>
-        <a href="https://github.com/aleclarson/vite-tsconfig-paths" target="_blank">
+        <a href="https://github.com/aleclarson/vite-tsconfig-paths" target="_blank" rel="noreferrer">
           <p>Absolute-Path</p>
         </a>
       </div>
       <Card>
-        <button onClick={() => setCount(count => count + 1)}>count is {count}</button>
+        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </Card>
       <ReadTheDocs>Click on the Vite and React logos to learn more</ReadTheDocs>
     </Wrapper>
-  );
+  )
 }
 
 const logoSpinAnime = keyframes`
 	from { transform: rotate(0deg); }
 	to { transform: rotate(360deg); }
-`;
+`
 
 const Wrapper = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-`;
+`
 
 const Logo = styled.img`
   height: 6em;
@@ -63,13 +63,13 @@ const Logo = styled.img`
   &:hover {
     filter: drop-shadow(0 0 2em #646cffaa);
   }
-`;
+`
 
 const ReactLogo = styled(Logo)`
   &:hover {
     filter: drop-shadow(0 0 2em #61dafbaa);
   }
-`;
+`
 
 const LogoLink = styled.a`
   @media (prefers-reduced-motion: no-preference) {
@@ -77,14 +77,14 @@ const LogoLink = styled.a`
       animation: ${logoSpinAnime} infinite 20s linear;
     }
   }
-`;
+`
 
 const Card = styled.div`
   padding: 2em;
-`;
+`
 
 const ReadTheDocs = styled.p`
   color: #888;
-`;
+`
 
-export default App;
+export default App

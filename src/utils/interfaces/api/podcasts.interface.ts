@@ -1,50 +1,50 @@
 export interface IPodcasts {
   feed: {
-    entry: IPodcast[];
-  };
+    entry: IPodcast[]
+  }
 }
 
 interface IPodcast {
-  'im:name': IPodcastName;
-  'im:image': IPodcastImage[];
-  summary: IPodcastSummary;
-  'im:price': IPodcastPrice;
-  'im:contentType': IPodcastContentType;
-  rights: IPodcastRights;
-  title: IPodcastTitle;
-  link: IPodcastLink;
-  id: IPodcastId;
-  'im:artist': IPodcastArtist;
-  category: IPodcastCategory;
-  'im:releaseDate': IPodcastReleaseDate;
+  "im:name": IPodcastName
+  "im:image": IPodcastImage[]
+  summary: IPodcastSummary
+  "im:price": IPodcastPrice
+  "im:contentType": IPodcastContentType
+  rights: IPodcastRights
+  title: IPodcastTitle
+  link: IPodcastLink
+  id: IPodcastId
+  "im:artist": IPodcastArtist
+  category: IPodcastCategory
+  "im:releaseDate": IPodcastReleaseDate
 }
 
 interface IPodcastContent {
-  label: string;
+  label: string
 }
 
 interface IPodcastName extends IPodcastContent {}
 
 interface IPodcastImage extends IPodcastContent {
   attributes: {
-    height: string;
-  };
+    height: string
+  }
 }
 
 interface IPodcastSummary extends IPodcastContent {}
 
 interface IPodcastPrice extends IPodcastContent {
   attributes: {
-    amount: string;
-    currency: string;
-  };
+    amount: string
+    currency: string
+  }
 }
 
 interface IPodcastContentType {
   attributes: {
-    term: string;
-    label: string;
-  };
+    term: string
+    label: string
+  }
 }
 
 interface IPodcastRights extends IPodcastContent {}
@@ -53,35 +53,35 @@ interface IPodcastTitle extends IPodcastContent {}
 
 interface IPodcastLink {
   attributes: {
-    rel: string;
-    type: string;
-    href: string;
-  };
+    rel: string
+    type: string
+    href: string
+  }
 }
 
 interface IPodcastId extends IPodcastContent {
   attributes: {
-    'im:id': string;
-  };
+    "im:id": string
+  }
 }
 
 interface IPodcastArtist extends IPodcastContent {
   attributes: {
-    href: string;
-  };
+    href: string
+  }
 }
 
 interface IPodcastCategory {
   attributes: {
-    'im:id': string;
-    term: string;
-    scheme: string;
-    label: string;
-  };
+    "im:id": string
+    term: string
+    scheme: string
+    label: string
+  }
 }
 
 interface IPodcastReleaseDate extends IPodcastContent {
   attributes: {
-    label: string;
-  };
+    label: string
+  }
 }

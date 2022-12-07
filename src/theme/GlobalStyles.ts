@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components"
 
 const GlobalStyles = createGlobalStyle`
 	:root {
@@ -75,6 +75,6 @@ const GlobalStyles = createGlobalStyle`
 			background-color: #f9f9f9;
 		}
 	}
-`;
+`
 
-export default GlobalStyles;
+export default GlobalStyles

@@ -1,14 +1,14 @@
-import axios, { AxiosResponse } from 'axios';
-import { API_URL } from 'utils/constants/api.constants';
-import { defaultHeaders, buildPath, ServiceOptions, generateHeaders } from './helpers';
+import axios, { AxiosResponse } from "axios"
+import { API_URL } from "utils/constants/api.constants"
+import { defaultHeaders, buildPath, ServiceOptions, generateHeaders } from "./helpers"
 
 const httpServices = () => {
   const httpInstance = axios.create({
     baseURL: API_URL,
     headers: defaultHeaders,
     // withCredentials: true,
-    timeout: 0,
-  });
+    timeout: 0
+  })
 
   /**
    * @name GET
@@ -17,19 +17,19 @@ const httpServices = () => {
    * @param {string} options.path - the path for the GET request.
    */
   const GET = async (options: ServiceOptions) => {
-    const path = buildPath(options);
-    await generateHeaders(httpInstance);
+    const path = buildPath(options)
+    await generateHeaders(httpInstance)
 
     return httpInstance
       .get(path)
-      .then(response => {
-        const _response = response as AxiosResponse;
-        return _response.data;
+      .then((response) => {
+        const _response = response as AxiosResponse
+        return _response.data
       })
-      .catch(error => {
-        throw error.response.data;
-      });
-  };
+      .catch((error) => {
+        throw error.response.data
+      })
+  }
 
   /**
    * @name POST
@@ -39,19 +39,19 @@ const httpServices = () => {
    * @param {Object} options.data - Object with body values.
    */
   const POST = async (options: ServiceOptions) => {
-    const path = buildPath(options);
-    await generateHeaders(httpInstance);
+    const path = buildPath(options)
+    await generateHeaders(httpInstance)
 
     return httpInstance
       .post(path, options.data)
-      .then(response => {
-        const _response = response as AxiosResponse;
-        return _response.data;
+      .then((response) => {
+        const _response = response as AxiosResponse
+        return _response.data
       })
-      .catch(error => {
-        throw error.response.data;
-      });
-  };
+      .catch((error) => {
+        throw error.response.data
+      })
+  }
 
   /**
    * @name PUT
@@ -61,19 +61,19 @@ const httpServices = () => {
    * @param {Object} options.data - Object with body values.
    */
   const PUT = async (options: ServiceOptions) => {
-    const path = buildPath(options);
-    await generateHeaders(httpInstance);
+    const path = buildPath(options)
+    await generateHeaders(httpInstance)
 
     return httpInstance
       .put(path, options.data)
-      .then(response => {
-        const _response = response as AxiosResponse;
-        return _response.data;
+      .then((response) => {
+        const _response = response as AxiosResponse
+        return _response.data
       })
-      .catch(error => {
-        throw error.response.data;
-      });
-  };
+      .catch((error) => {
+        throw error.response.data
+      })
+  }
 
   /**
    * @name DELETE
@@ -82,26 +82,26 @@ const httpServices = () => {
    * @param {string} options.path - the path for the DELETE request.
    */
   const DELETE = async (options: ServiceOptions) => {
-    const path = buildPath(options);
-    await generateHeaders(httpInstance);
+    const path = buildPath(options)
+    await generateHeaders(httpInstance)
 
     return httpInstance
       .delete(path)
-      .then(response => {
-        const _response = response as AxiosResponse;
-        return _response.data;
+      .then((response) => {
+        const _response = response as AxiosResponse
+        return _response.data
       })
-      .catch(error => {
-        throw error.response.data;
-      });
-  };
+      .catch((error) => {
+        throw error.response.data
+      })
+  }
 
   return {
     GET,
     POST,
     PUT,
-    DELETE,
-  };
-};
+    DELETE
+  }
+}
 
-export default httpServices();
+export default httpServices()
