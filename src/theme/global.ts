@@ -9,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
 
 		color-scheme: light dark;
 		color: rgba(255, 255, 255, 0.87);
-		background-color: #242424;
+		background-color: #FFF;
 
 		font-synthesis: none;
 		text-rendering: optimizeLegibility;
@@ -42,6 +42,10 @@ const GlobalStyles = createGlobalStyle`
 	h1 {
 		font-size: 3.2em;
 		line-height: 1.1;
+	}
+
+	h1,h2,h3,p {
+		margin: 0;
 	}
 
 	button {

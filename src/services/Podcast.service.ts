@@ -1,7 +1,7 @@
 import http from "./http-services/http"
 import { API } from "utils/constants/api.constants"
-import { IPodcastDetails } from "utils/interfaces/api/podcast_details.interface"
-import { IPodcasts } from "utils/interfaces/api/podcasts.interface"
+import { IPodcastDetails } from "utils/interfaces/podcast-details.interface"
+import { IPodcasts } from "utils/interfaces/podcasts.interface"
 
 const PodcastService = () => {
   const getPodcasts = async (): Promise<IPodcasts> => {
