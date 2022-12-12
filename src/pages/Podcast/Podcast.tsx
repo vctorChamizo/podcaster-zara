@@ -7,7 +7,7 @@ import { PodcastContainer, PodcastListContainer, PodcastListSectionContainer } f
 import DetailPodcastCard from "ui/components/Cards/DetailPodcastCard/DetailPodcastCard"
 import Typography, { Types } from "ui/components/Typography/Typography"
 import { COLORS } from "theme/colors"
-import { TRACKS } from "temp/track.mock"
+import { PODCASTS } from "temp/podcasts.mock"
 import EpisodeList from "ui/components/EpisodeList/EpisodeList"
 import { ROOT_ROUTES } from "utils/constants/route.constants"
 import { PodcastLogic } from "./Podcast.logic"
@@ -37,11 +37,11 @@ const Podcast = () => {
           <PodcastListContainer>
             <PodcastListSectionContainer>
               <Typography type={Types.H2} color={COLORS.gray1000}>
-                Episodes: {TRACKS.length}
+                Episodes: {PODCASTS.length}
               </Typography>
             </PodcastListSectionContainer>
             <PodcastListSectionContainer>
-              <EpisodeList onClick={handleOnClick} episodes={TRACKS} />
+              <EpisodeList onClick={handleOnClick} episodes={PODCASTS} />
             </PodcastListSectionContainer>
           </PodcastListContainer>
         </PodcastContainer>

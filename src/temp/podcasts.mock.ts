@@ -1,6 +1,6 @@
 import { IEpisode } from "ui/components/EpisodeList/EpisodeList"
 
-export const TRACKS: IEpisode[] = [
+export const PODCASTS: IEpisode[] = [
   { title: "Clipping - Work work", date: new Date(), duration: 200, id: "1" },
   { title: "Clipping - Work work", date: new Date(), duration: 200, id: "2" },
   { title: "Clipping - Work work", date: new Date(), duration: 200, id: "3" },
