@@ -6,8 +6,12 @@ import Counter from "ui/components/Counter/Counter"
 import Layout from "ui/Layout/Layout"
 import SearchBar from "ui/components/SearchBar/SearchBar"
 import PodcastCard from "ui/components/Cards/PodcastCard/PodcastCard"
+import { ROOT_ROUTES } from "utils/constants/route.constants"
+import { useNavigate } from "react-router-dom"
 
 const Home: React.FC = () => {
+  const navigate = useNavigate()
+
   const { podcasts } = useContext(PodcastContext)
 
   const [filteredPodcasts, setFilteredPodcasts] = useState<IPodcast[]>([] as IPodcast[])
@@ -22,7 +26,9 @@ const Home: React.FC = () => {
     setFilteredPodcasts(_podcasts)
   }
 
-  const handleOnClickCard = () => {}
+  const handleOnClickCard = (podcast: IPodcast) => {
+    navigate(`${ROOT_ROUTES.PODCAST}/${podcast.id.attributes["im:id"]}`)
+  }
 
   useEffect(() => {
     setFilteredPodcasts(podcasts)
@@ -42,7 +48,7 @@ const Home: React.FC = () => {
               image={podcast["im:image"][2].label}
               title={podcast["im:name"].label}
               author={podcast["im:artist"].label}
-              onClick={handleOnClickCard}
+              onClick={() => handleOnClickCard(podcast)}
             />
           ))}
         </PodcastsContainer>
