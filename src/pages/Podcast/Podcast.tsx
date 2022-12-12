@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom"
 import { PodcastContext } from "providers/PodcastProvider"
 import { IPodcastDetail } from "utils/interfaces/podcast-detail.interface"
 import Layout from "ui/Layout/Layout"
-import { getPodcastDetail } from "./Podcast.service"
 import { PodcastContainer, PodcastListContainer, PodcastListSectionContainer } from "./Podcast.styled"
 import DetailPodcastCard from "ui/components/Cards/DetailPodcastCard/DetailPodcastCard"
 import Typography, { Types } from "ui/components/Typography/Typography"
@@ -11,6 +10,7 @@ import { COLORS } from "theme/colors"
 import { TRACKS } from "temp/track.mock"
 import EpisodeList from "ui/components/EpisodeList/EpisodeList"
 import { ROOT_ROUTES } from "utils/constants/route.constants"
+import { PodcastLogic } from "./Podcast.logic"
 
 const Podcast = () => {
   const navigate = useNavigate()
@@ -25,7 +25,7 @@ const Podcast = () => {
   }
 
   useEffect(() => {
-    if (podcastId) getPodcastDetail({ podcastId, setPodcastDetail, setLoading })
+    if (podcastId) PodcastLogic.getPodcastDetail({ podcastId, setPodcastDetail, setLoading })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [podcastId])
 

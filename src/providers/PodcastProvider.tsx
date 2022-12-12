@@ -1,5 +1,5 @@
 import { createContext, Dispatch, FC, PropsWithChildren, SetStateAction, useEffect, useState } from "react"
-import podcastService from "services/podcast.service"
+import podcastService from "services/Podcast.service"
 import { EStorageItems, PODCASTS_EXPIRE_INTERVAL } from "utils/constants/storage.constants"
 import storage from "utils/functions/storage.functions"
 import { IPodcast } from "utils/interfaces/podcasts.interface"
