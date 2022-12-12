@@ -1,7 +1,11 @@
 import SpinnerContainer from "./Spinner.style"
 
 const Spinner = () => {
-  return <SpinnerContainer />
+  return (
+    <SpinnerContainer>
+      <div />
+    </SpinnerContainer>
+  )
 }
 
 export default Spinner

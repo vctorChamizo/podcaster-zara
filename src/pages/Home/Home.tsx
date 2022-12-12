@@ -8,6 +8,7 @@ import SearchBar from "ui/components/SearchBar/SearchBar"
 import PodcastCard from "ui/components/Cards/PodcastCard/PodcastCard"
 import { ROOT_ROUTES } from "utils/constants/route.constants"
 import { useNavigate } from "react-router-dom"
+import { HomeLogic } from "./Home.logic"
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
@@ -16,15 +17,7 @@ const Home: React.FC = () => {
 
   const [filteredPodcasts, setFilteredPodcasts] = useState<IPodcast[]>([] as IPodcast[])
 
-  const handleOnChangeSearchBar = (value: string) => {
-    const _value = value.toLowerCase()
-    const _podcasts = podcasts.filter((podcast) => {
-      const artist = podcast["im:artist"].label.toLowerCase()
-      const name = podcast["im:name"].label.toLowerCase()
-      return artist.includes(_value) || name.includes(_value)
-    })
-    setFilteredPodcasts(_podcasts)
-  }
+  const handleOnChangeSearchBar = (value: string) => setFilteredPodcasts(HomeLogic.filterPodcasts(value, podcasts))
 
   const handleOnClickCard = (podcast: IPodcast) => {
     navigate(`${ROOT_ROUTES.PODCAST}/${podcast.id.attributes["im:id"]}`)
@@ -43,13 +36,7 @@ const Home: React.FC = () => {
         </ActionContainer>
         <PodcastsContainer>
           {filteredPodcasts.map((podcast) => (
-            <PodcastCard
-              key={podcast.id.label}
-              image={podcast["im:image"][2].label}
-              title={podcast["im:name"].label}
-              author={podcast["im:artist"].label}
-              onClick={() => handleOnClickCard(podcast)}
-            />
+            <PodcastCard key={podcast.id.label} {...HomeLogic.parserPodcasts(podcast)} onClick={() => handleOnClickCard(podcast)} />
           ))}
         </PodcastsContainer>
       </HomeContainer>
