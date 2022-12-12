@@ -25,7 +25,6 @@ const DescriptionText = styled.div`
 
 const Audio = styled.audio`
   width: 100%;
-  border-radius: 8px;
 `
 
 export { EpisodeContainer, EpisodeDetailContainer, DescriptionText, Audio }

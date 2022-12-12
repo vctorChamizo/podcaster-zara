@@ -34,17 +34,15 @@ const GlobalStyles = createGlobalStyle`
 		margin: 0;
 	}
 
-	body {
-		/* display: flex;
-		place-items: center; */
-	}
-
 	h1 {
 		font-size: 3.2em;
 		line-height: 1.1;
 	}
 
-	h1,h2,h3,p {
+	h1,
+	h2,
+	h3,
+	p {
 		margin: 0;
 	}
 

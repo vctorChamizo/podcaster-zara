@@ -6,7 +6,6 @@ const httpServices = () => {
   const httpInstance = axios.create({
     baseURL: API_URL,
     headers: defaultHeaders,
-    // withCredentials: true,
     timeout: 0
   })
 

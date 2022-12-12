@@ -37,7 +37,7 @@ const Episode = () => {
             <Typography type={Types.H3} color={COLORS.gray1000}>
               {EPISODE.title}
             </Typography>
-            {/* // TODO - podcast description */}
+            {/* TODO - podcast description (API response fail) */}
             <DescriptionText>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula fringilla ligula quis blandit. Etiam quam eros,
               ultricies eu nunc eu, bibendum semper lacus.

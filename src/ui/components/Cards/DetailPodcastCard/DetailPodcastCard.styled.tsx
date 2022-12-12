@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { COLORS } from "theme/colors"
 
-type TitleWrapperProps = {
+type CursorProps = {
   cursor?: string
 }
 
@@ -16,14 +16,15 @@ const DetailPodcastCardContainer = styled.article`
   height: fit-content;
 `
 
-const DetailPodcastCardImage = styled.img`
+const DetailPodcastCardImage = styled.img<CursorProps>`
   width: 150px;
   height: 150px;
   align-self: center;
   margin-bottom: 24px;
+  cursor: ${({ cursor }) => cursor};
 `
 
-const TitleWrapper = styled.div<TitleWrapperProps>`
+const TitleWrapper = styled.div<CursorProps>`
   padding: 12px 0px;
   border-top: 1px solid ${COLORS.gray600};
   cursor: ${({ cursor }) => cursor};

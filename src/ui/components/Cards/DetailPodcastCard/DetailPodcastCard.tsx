@@ -19,7 +19,7 @@ const DetailPodcastCard: React.FC<IPodcastDetailCardProps> = ({ podcastDetail, o
 
   return (
     <DetailPodcastCardContainer>
-      <DetailPodcastCardImage src={podcastDetail.artworkUrl600} onClick={handleOnClick} />
+      <DetailPodcastCardImage src={podcastDetail.artworkUrl600} onClick={handleOnClick} cursor={onClick && "pointer"} />
       <TitleWrapper onClick={handleOnClick} cursor={onClick && "pointer"}>
         <Typography color={COLORS.gray900}>{podcastDetail.collectionName}</Typography>
         <Typography type={Types.CAPTION}>by {podcastDetail.artistName}</Typography>
