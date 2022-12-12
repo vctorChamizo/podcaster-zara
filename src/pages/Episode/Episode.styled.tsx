@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { COLORS } from "theme/colors"
+import Typography from "ui/components/Typography/Typography"
 
 const EpisodeContainer = styled.div`
   display: flex;
@@ -16,15 +17,17 @@ const EpisodeDetailContainer = styled.div`
   margin-left: 64px;
 `
 
-const DescriptionText = styled.div`
-  color: ${COLORS.gray800};
-  font-size: 16px;
+const DescriptionTextWrapper = styled.div`
   margin-top: 8px;
   margin-bottom: 24px;
+`
+
+const DescriptionText = styled(Typography)`
+  color: ${COLORS.gray800};
 `
 
 const Audio = styled.audio`
   width: 100%;
 `
 
-export { EpisodeContainer, EpisodeDetailContainer, DescriptionText, Audio }
+export { EpisodeContainer, EpisodeDetailContainer, DescriptionText, Audio, DescriptionTextWrapper }

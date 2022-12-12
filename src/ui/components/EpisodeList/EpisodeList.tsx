@@ -4,7 +4,6 @@ import { formatDurationByMs } from "utils/functions/time.functions"
 import { Types, Weights } from "../Typography/Typography"
 import { Table, TableRow, TableHader, ItemList } from "./EpisodeList.styled"
 
-// TODO - provisional
 export interface IEpisode {
   id: string
   title: string
