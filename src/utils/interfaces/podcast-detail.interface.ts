@@ -1,4 +1,4 @@
-export interface IPodcastDetails {
+export interface IPodcastDetailResponse {
   results: IPodcastDetail[]
   resultCount: number
 }

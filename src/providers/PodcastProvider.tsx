@@ -16,7 +16,7 @@ export const PodcastProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
   const [podcasts, setPodcasts] = useState([] as IPodcast[])
   const [loading, setLoading] = useState<boolean>(true)
 
-  const revalidate = async () => {
+  const getPodcasts = async () => {
     try {
       const storageData = storage.getItem(EStorageItems.PODCASTS)
 
@@ -27,14 +27,14 @@ export const PodcastProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
       storage.setItem(EStorageItems.PODCASTS, JSON.stringify(response.feed.entry), PODCASTS_EXPIRE_INTERVAL)
       setPodcasts(response.feed.entry)
     } catch (error) {
-      console.error(error)
+      console.error(`ERROR - Podcast list - ${error}`)
     } finally {
       setLoading(false)
     }
   }
 
   useEffect(() => {
-    revalidate()
+    getPodcasts()
   }, [])
 
   const value = { podcasts, loading, setLoading }

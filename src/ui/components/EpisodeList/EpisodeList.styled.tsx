@@ -14,7 +14,7 @@ const Table = styled.div`
   width: 100%;
 `
 
-const TableHader = styled.th`
+const TableHader = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;

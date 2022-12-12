@@ -17,8 +17,8 @@ const PodcastsContainer = styled.div`
   margin-top: 32px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 48px;
+  justify-content: center;
+  gap: 96px;
 `
 
 export { HomeContainer, ActionContainer, PodcastsContainer }

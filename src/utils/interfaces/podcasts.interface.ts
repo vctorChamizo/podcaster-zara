@@ -1,4 +1,4 @@
-export interface IPodcasts {
+export interface IPodcastResponse {
   feed: {
     entry: IPodcast[]
   }

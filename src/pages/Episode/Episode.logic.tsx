@@ -28,7 +28,7 @@ export const EpisodeLogic = {
       Expirestorage.setItem(EStorageItems.PODCAST_DETAILS + podcastId, JSON.stringify(response.results[0]), PODCASTS_EXPIRE_INTERVAL)
       data.setPodcastDetail(response.results[0])
     } catch (error) {
-      console.error(error)
+      console.error(`ERROR - Podcast ${data.podcastId} - ${error}`)
     } finally {
       data.setLoading(false)
     }

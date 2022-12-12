@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "react"
 import { COLORS } from "theme/colors"
 import { Typographys } from "./Typography.styled"
 
@@ -29,24 +30,14 @@ export interface ITypographyProps {
   weight?: Weights | null
   size?: Sizes | null
   color?: string
-  children?: React.ReactNode
   style?: object
 }
 
-const Typography: React.FC<ITypographyProps> = ({ ...props }) => {
-  const {
-    children,
-    type = Types.P,
-    size = null,
-    weight = null,
-    color = COLORS.gray800,
-    dataTestId = "typography-component",
-    style,
-    ...otherProps
-  } = props
+const Typography: React.FC<PropsWithChildren<ITypographyProps>> = ({ ...props }) => {
+  const { children, type = Types.P, size = null, weight = null, color = COLORS.gray1000, dataTestId = "typography-component", style } = props
   const Text = Typographys[type]
   return (
-    <Text data-test-id={dataTestId} type={type} size={size} weight={weight} color={color} style={style} {...otherProps}>
+    <Text data-test-id={dataTestId} type={type} size={size} weight={weight} color={color} style={style}>
       {children}
     </Text>
   )
