@@ -32,7 +32,6 @@
     "no-unused-vars": "warn",
     "no-unreachable": "warn",
     "strict": ["error", "global"],
-    "curly": "warn",
 
     /* React Options */
     "react/jsx-uses-react": "off",
