@@ -26,7 +26,7 @@ const httpServices = () => {
         return JSON.parse(_response.data.contents)
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
         throw error.response.data
       })
   }

@@ -1,5 +1,6 @@
 import React from "react"
 import { COLORS } from "theme/colors"
+import { formatDurationByMs } from "utils/functions/time.functions"
 import { Types, Weights } from "../Typography/Typography"
 import { Table, TableRow, TableHader, ItemList } from "./EpisodeList.styled"
 
@@ -39,7 +40,7 @@ const EpisodeList: React.FC<IEpisodeListProps> = ({ onClick, episodes }) => {
             {episode.date.toLocaleDateString()}
           </ItemList>
           <ItemList style={{ width: "15%" }} type={Types.P} color={COLORS.gray1000}>
-            {episode.duration}
+            {formatDurationByMs(episode.duration)}
           </ItemList>
         </TableRow>
       ))}
