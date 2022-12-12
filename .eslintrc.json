@@ -32,7 +32,6 @@
     "no-unused-vars": "warn",
     "no-unreachable": "warn",
     "strict": ["error", "global"],
-    "curly": "warn",
 
     /* React Options */
     "react/jsx-uses-react": "off",
@@ -41,6 +40,8 @@
     "react/jsx-filename-extension": 0,
     "react/jsx-one-expression-per-line": 0,
     "react/prop-types": 0,
+    "react/display-name": 0,
+
 
     /* React Hooks Options */
     "react-hooks/rules-of-hooks": "error",
