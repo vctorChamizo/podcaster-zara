@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react"
 import podcastService from "services/Podcast.service"
-import { EStorageItems } from "utils/constants/storage.constants"
+import { EStorageItems, PODCASTS_EXPIRE_INTERVAL } from "utils/constants/storage.constants"
 import { parserEpisode, parserPodcast, parserResponse } from "utils/functions/parser.fucntions"
 import Expirestorage from "utils/functions/storage.functions"
 import { IEpisode, IPodcastDetail } from "utils/interfaces/podcast-detail.interface"
@@ -28,10 +28,7 @@ export const EpisodeLogic = {
 
       const storageData = Expirestorage.getItem(EStorageItems.PODCAST_DETAILS + podcastId)
 
-      console.log("pasa proa qui", storageData)
-
       if (storageData) {
-        console.log("pasa proa qui")
         const _podcastDetail = JSON.parse(storageData) as IPodcastDetail
         data.setPodcastDetail(_podcastDetail)
         const _episode = findEpisode(data.episodeId, _podcastDetail.episodes)
@@ -50,7 +47,7 @@ export const EpisodeLogic = {
       const episodes = parserEpisode(item)
       const _podcast = parserPodcast(podcastResponse, description, episodes)
 
-      // Expirestorage.setItem(EStorageItems.PODCAST_DETAILS + podcastId, JSON.stringify(_podcastCompleted), PODCASTS_EXPIRE_INTERVAL)
+      Expirestorage.setItem(EStorageItems.PODCAST_DETAILS + podcastId, JSON.stringify(_podcast), PODCASTS_EXPIRE_INTERVAL)
 
       data.setPodcastDetail(_podcast)
       const _episode = findEpisode(data.episodeId, _podcast.episodes)

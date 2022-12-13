@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { PodcastContext } from "providers/PodcastProvider"
 import { IPodcastDetail } from "utils/interfaces/podcast-detail.interface"
 import Layout from "ui/Layout/Layout"
 import { PodcastContainer, PodcastListContainer, PodcastListSectionContainer } from "./Podcast.styled"
@@ -10,12 +9,13 @@ import { COLORS } from "theme/colors"
 import EpisodeList from "ui/components/EpisodeList/EpisodeList"
 import { ROOT_ROUTES } from "utils/constants/route.constants"
 import { PodcastLogic } from "./Podcast.logic"
+import { HeaderContext } from "providers/HeaderProvider"
 
 const Podcast = () => {
   const navigate = useNavigate()
   const { podcastId } = useParams()
 
-  const { setLoading } = useContext(PodcastContext)
+  const { setLoading, setError } = useContext(HeaderContext)
 
   const [podcastDetail, setPodcastDetail] = useState<IPodcastDetail>()
 
@@ -24,9 +24,14 @@ const Podcast = () => {
   }
 
   useEffect(() => {
-    if (podcastId) PodcastLogic.getPodcastDetail({ podcastId, setPodcastDetail, setLoading })
+    if (podcastId) PodcastLogic.getPodcastDetail({ podcastId, setPodcastDetail, setLoading, setError })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [podcastId])
+
+  useEffect(() => {
+    return () => setError(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Layout>

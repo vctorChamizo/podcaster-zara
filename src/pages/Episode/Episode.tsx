@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { PodcastContext } from "providers/PodcastProvider"
 import { DescriptionText, EpisodeDetailContainer, EpisodeContainer, Audio, DescriptionTextWrapper } from "./Episode.styled"
 import Layout from "ui/Layout/Layout"
 import { COLORS } from "theme/colors"
@@ -10,12 +9,13 @@ import Typography, { Sizes, Types } from "ui/components/Typography/Typography"
 import { EpisodeLogic } from "./Episode.logic"
 import { ROOT_ROUTES } from "utils/constants/route.constants"
 import ReactHtmlParser from "react-html-parser"
+import { HeaderContext } from "providers/HeaderProvider"
 
 const Episode = () => {
   const navigate = useNavigate()
   const { podcastId, episodeId } = useParams()
 
-  const { setLoading } = useContext(PodcastContext)
+  const { setLoading } = useContext(HeaderContext)
 
   const [podcastDetail, setPodcastDetail] = useState<IPodcastDetail>()
   const [episodeDetail, setEpisodeDetail] = useState<IEpisode>()

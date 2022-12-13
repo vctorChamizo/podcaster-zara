@@ -42,7 +42,7 @@ export interface IEpisode {
   title: string
   author: string
   description: string
-  duration: number
+  duration: string
   link: string
   pubDate: string
 }

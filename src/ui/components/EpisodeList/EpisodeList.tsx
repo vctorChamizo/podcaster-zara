@@ -3,7 +3,6 @@ import { COLORS } from "theme/colors"
 import { IEpisode } from "utils/interfaces/podcast-detail.interface"
 import { Sizes, Types, Weights } from "../Typography/Typography"
 import { Table, TableHader, ItemList, TableRow } from "./EpisodeList.styled"
-import { manageDuration } from "./utils"
 
 interface IEpisodeListProps {
   episodes: IEpisode[]
@@ -25,7 +24,7 @@ const EpisodeList: React.FC<IEpisodeListProps> = ({ onClick, episodes }) => {
         </ItemList>
       </TableHader>
       {episodes.map((episode, index) => (
-        <TableRow index={index} key={episode.guid} onClick={() => onClick(episode.guid)}>
+        <TableRow index={index} key={`${episode.guid}-${index}`} onClick={() => onClick(episode.guid)}>
           <ItemList style={{ width: "70%" }} type={Types.P} size={Sizes.XS} color={COLORS.blue400}>
             {episode.title}
           </ItemList>
@@ -33,7 +32,7 @@ const EpisodeList: React.FC<IEpisodeListProps> = ({ onClick, episodes }) => {
             {new Date(episode.pubDate).toLocaleDateString()}
           </ItemList>
           <ItemList style={{ width: "15%" }} type={Types.P} size={Sizes.XS} color={COLORS.gray1000}>
-            {manageDuration(episode.duration)}
+            {episode.duration}
           </ItemList>
         </TableRow>
       ))}

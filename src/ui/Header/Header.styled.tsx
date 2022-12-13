@@ -11,4 +11,10 @@ const HeaderContainer = styled.div`
   padding-top: 16px;
 `
 
-export { HeaderContainer }
+const ErrorContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`
+
+export { HeaderContainer, ErrorContainer }

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react"
 import podcastService from "services/Podcast.service"
-import { EStorageItems } from "utils/constants/storage.constants"
+import { EStorageItems, PODCASTS_EXPIRE_INTERVAL } from "utils/constants/storage.constants"
 import Expirestorage from "utils/functions/storage.functions"
 import { IPodcastDetail } from "utils/interfaces/podcast-detail.interface"
 import { parserEpisode, parserPodcast, parserResponse } from "utils/functions/parser.fucntions"
@@ -9,6 +9,7 @@ interface IGetPodcastDetail {
   podcastId: string
   setPodcastDetail: Dispatch<SetStateAction<IPodcastDetail | undefined>>
   setLoading: Dispatch<SetStateAction<boolean>>
+  setError: Dispatch<SetStateAction<boolean>>
 }
 
 export const PodcastLogic = {
@@ -33,11 +34,14 @@ export const PodcastLogic = {
       const episodes = parserEpisode(item)
       const _podcast = parserPodcast(podcastResponse, description, episodes)
 
-      // Expirestorage.setItem(EStorageItems.PODCAST_DETAILS + podcastId, JSON.stringify(_podcastCompleted), PODCASTS_EXPIRE_INTERVAL)
+      console.log(_podcast)
+
+      Expirestorage.setItem(EStorageItems.PODCAST_DETAILS + podcastId, JSON.stringify(_podcast), PODCASTS_EXPIRE_INTERVAL)
 
       data.setPodcastDetail(_podcast)
     } catch (error) {
       console.error(`ERROR - Podcast ${data.podcastId} - ${error}`)
+      data.setError(true)
     } finally {
       data.setLoading(false)
     }

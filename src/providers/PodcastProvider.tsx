@@ -1,20 +1,20 @@
-import { createContext, Dispatch, FC, PropsWithChildren, SetStateAction, useEffect, useState } from "react"
+import { createContext, FC, PropsWithChildren, useContext, useEffect, useState } from "react"
 import podcastService from "services/Podcast.service"
 import { EStorageItems, PODCASTS_EXPIRE_INTERVAL } from "utils/constants/storage.constants"
 import storage from "utils/functions/storage.functions"
 import { IPodcast } from "utils/interfaces/podcasts.interface"
+import { HeaderContext } from "./HeaderProvider"
 
 export interface IPodcastState {
   podcasts: IPodcast[]
-  loading: boolean
-  setLoading: Dispatch<SetStateAction<boolean>>
 }
 
 export const PodcastContext = createContext<IPodcastState>({} as IPodcastState)
 
 export const PodcastProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
+  const { setLoading } = useContext(HeaderContext)
+
   const [podcasts, setPodcasts] = useState([] as IPodcast[])
-  const [loading, setLoading] = useState<boolean>(true)
 
   const getPodcasts = async () => {
     try {
@@ -35,9 +35,10 @@ export const PodcastProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
 
   useEffect(() => {
     getPodcasts()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const value = { podcasts, loading, setLoading }
+  const value = { podcasts }
 
   return <PodcastContext.Provider value={value}>{children}</PodcastContext.Provider>
 }
