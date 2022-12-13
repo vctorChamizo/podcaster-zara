@@ -28,7 +28,7 @@ const TableRow = styled.div<TableRowProps>`
   display: flex;
   gap: 8px;
   background-color: ${({ index }) => (index && index % 2 === 1 ? COLORS.gray400 : COLORS.white)};
-  padding: 12px 0;
+  padding: 16px 0;
   border-bottom: 0.5px solid ${COLORS.gray700};
 `
 

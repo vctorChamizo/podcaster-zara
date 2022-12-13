@@ -1,8 +1,11 @@
 import SpinnerContainer from "./Spinner.style"
 
-const Spinner = () => {
+interface ISpinnerProps {
+  error?: boolean
+}
+const Spinner: React.FC<ISpinnerProps> = ({ error }) => {
   return (
-    <SpinnerContainer>
+    <SpinnerContainer error={error}>
       <div />
     </SpinnerContainer>
   )

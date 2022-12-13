@@ -1,15 +1,8 @@
 import React from "react"
 import { COLORS } from "theme/colors"
-import { formatDurationByMs } from "utils/functions/time.functions"
-import { Types, Weights } from "../Typography/Typography"
-import { Table, TableRow, TableHader, ItemList } from "./EpisodeList.styled"
-
-export interface IEpisode {
-  id: string
-  title: string
-  duration: number
-  date: Date
-}
+import { IEpisode } from "utils/interfaces/podcast-detail.interface"
+import { Sizes, Types, Weights } from "../Typography/Typography"
+import { Table, TableHader, ItemList, TableRow } from "./EpisodeList.styled"
 
 interface IEpisodeListProps {
   episodes: IEpisode[]
@@ -31,15 +24,15 @@ const EpisodeList: React.FC<IEpisodeListProps> = ({ onClick, episodes }) => {
         </ItemList>
       </TableHader>
       {episodes.map((episode, index) => (
-        <TableRow index={index} key={episode.id} onClick={() => onClick(episode.id)}>
-          <ItemList style={{ width: "70%" }} type={Types.P} color={COLORS.blue400}>
+        <TableRow index={index} key={`${episode.guid}-${index}`} onClick={() => onClick(episode.guid)}>
+          <ItemList style={{ width: "70%" }} type={Types.P} size={Sizes.XS} color={COLORS.blue400}>
             {episode.title}
           </ItemList>
-          <ItemList style={{ width: "15%" }} type={Types.P} color={COLORS.gray1000}>
-            {episode.date.toLocaleDateString()}
+          <ItemList style={{ width: "15%" }} type={Types.P} size={Sizes.XS} color={COLORS.gray1000}>
+            {new Date(episode.pubDate).toLocaleDateString()}
           </ItemList>
-          <ItemList style={{ width: "15%" }} type={Types.P} color={COLORS.gray1000}>
-            {formatDurationByMs(episode.duration)}
+          <ItemList style={{ width: "15%" }} type={Types.P} size={Sizes.XS} color={COLORS.gray1000}>
+            {episode.duration}
           </ItemList>
         </TableRow>
       ))}

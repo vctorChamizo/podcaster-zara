@@ -1,9 +1,4 @@
-export interface IPodcastDetailResponse {
-  results: IPodcastDetail[]
-  resultCount: number
-}
-
-export interface IPodcastDetail {
+export interface IPodcastDetailResponseProps {
   wrapperType: string
   kind: string
   artistId: number
@@ -36,4 +31,27 @@ export interface IPodcastDetail {
   artworkUrl600: string
   genreIds: string[]
   genres: string[]
+}
+export interface IPodcastDetailResponse {
+  results: IPodcastDetailResponseProps[]
+  resultCount: number
+}
+
+export interface IEpisode {
+  guid: string
+  title: string
+  author: string
+  description: string
+  duration: string
+  link: string
+  pubDate: string
+}
+
+export interface IPodcastDetail {
+  id: string
+  title: string
+  author: string
+  image: string
+  description: string
+  episodes: IEpisode[]
 }

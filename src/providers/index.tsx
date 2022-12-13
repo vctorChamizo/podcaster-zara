@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from "react"
+import { HeaderProvider } from "./HeaderProvider"
 import { PodcastProvider } from "./PodcastProvider"
 
 const compose = (providers: React.FC<PropsWithChildren<{}>>[]) =>
@@ -8,6 +9,6 @@ const compose = (providers: React.FC<PropsWithChildren<{}>>[]) =>
     </Previous>
   ))
 
-const Provider = compose([PodcastProvider])
+const Provider = compose([HeaderProvider, PodcastProvider])
 
 export default Provider
