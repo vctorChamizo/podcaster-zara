@@ -35,15 +35,15 @@ const Podcast = () => {
           <DetailPodcastCard podcastDetail={podcastDetail} />
           <PodcastListContainer>
             <PodcastListSectionContainer>
-              {/* // TODO */}
               <Typography type={Types.H2} color={COLORS.gray1000}>
-                Episodes: {"0"}
+                Episodes: {podcastDetail.episodes?.length || 0}
               </Typography>
             </PodcastListSectionContainer>
-            <PodcastListSectionContainer>
-              {/* // TODO */}
-              <EpisodeList onClick={handleOnClick} episodes={[]} />
-            </PodcastListSectionContainer>
+            {podcastDetail?.episodes && (
+              <PodcastListSectionContainer>
+                <EpisodeList onClick={handleOnClick} episodes={podcastDetail.episodes} />
+              </PodcastListSectionContainer>
+            )}
           </PodcastListContainer>
         </PodcastContainer>
       )}

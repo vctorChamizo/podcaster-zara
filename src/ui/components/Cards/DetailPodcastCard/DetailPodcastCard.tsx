@@ -8,10 +8,7 @@ import {
 import { IPodcastDetail } from "utils/interfaces/podcast-detail.interface"
 import { COLORS } from "theme/colors"
 import Typography, { Sizes, Types, Weights } from "ui/components/Typography/Typography"
-
-// ! API (response uncompleted)
-const PODCAST_DESCRIPTION =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula fringilla ligula quis blandit. Etiam quam eros, ultricies eununc eu, bibendum semper lacus."
+import ReactHtmlParser from "react-html-parser"
 
 interface IPodcastDetailCardProps {
   podcastDetail: IPodcastDetail
@@ -23,13 +20,13 @@ const DetailPodcastCard: React.FC<IPodcastDetailCardProps> = ({ podcastDetail, o
 
   return (
     <DetailPodcastCardContainer>
-      <DetailPodcastCardImage src={podcastDetail.artworkUrl600} onClick={handleOnClick} cursor={onClick && "pointer"} />
+      <DetailPodcastCardImage src={podcastDetail.image} onClick={handleOnClick} cursor={onClick && "pointer"} />
       <TitleWrapper onClick={handleOnClick} cursor={onClick && "pointer"}>
         <Typography color={COLORS.gray900} weight={Weights.SEMIBOLD}>
-          {podcastDetail.collectionName}
+          {podcastDetail.title}
         </Typography>
         <Typography style={{ fontStyle: "italic" }} type={Types.CAPTION}>
-          by {podcastDetail.artistName}
+          by {podcastDetail.author}
         </Typography>
       </TitleWrapper>
       <DescriptionWrapper>
@@ -37,7 +34,7 @@ const DetailPodcastCard: React.FC<IPodcastDetailCardProps> = ({ podcastDetail, o
           Description:
         </Typography>
         <DescriptionText style={{ fontStyle: "italic" }} size={Sizes.XS}>
-          {PODCAST_DESCRIPTION}
+          {ReactHtmlParser(podcastDetail.description)}
         </DescriptionText>
       </DescriptionWrapper>
     </DetailPodcastCardContainer>

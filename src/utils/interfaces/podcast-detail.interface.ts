@@ -1,31 +1,4 @@
-export interface IPodcastDetailResponse {
-  results: IPodcastDetail[]
-  resultCount: number
-}
-
-type TMedia = {
-  length: string
-  type: string
-  url: string
-}
-
-export interface IEpisode {
-  guid: string
-  author: string
-  created: number
-  description: string
-  enclosures: TMedia[]
-  itunes_duration: string
-  published: number
-  title: string
-}
-
-export interface IFeedURLResponse {
-  description: string
-  items: IEpisode[]
-}
-
-export interface IPodcastDetail {
+export interface IPodcastDetailResponseProps {
   wrapperType: string
   kind: string
   artistId: number
@@ -39,7 +12,6 @@ export interface IPodcastDetail {
   artistViewUrl: string
   collectionViewUrl: string
   feedUrl: string
-  feedUrlReponse?: IFeedURLResponse
   trackViewUrl: string
   artworkUrl30: string
   artworkUrl60: string
@@ -59,4 +31,27 @@ export interface IPodcastDetail {
   artworkUrl600: string
   genreIds: string[]
   genres: string[]
+}
+export interface IPodcastDetailResponse {
+  results: IPodcastDetailResponseProps[]
+  resultCount: number
+}
+
+export interface IEpisode {
+  guid: string
+  title: string
+  author: string
+  description: string
+  duration: number
+  link: string
+  pubDate: string
+}
+
+export interface IPodcastDetail {
+  id: string
+  title: string
+  author: string
+  image: string
+  description: string
+  episodes: IEpisode[]
 }
