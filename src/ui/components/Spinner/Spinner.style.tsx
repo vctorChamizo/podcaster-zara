@@ -32,7 +32,11 @@ const ldsRipple = keyframes`
     }
 `
 
-const SpinnerContainer = styled.div`
+type TSpinnerContainerProps = {
+  error?: boolean
+}
+
+const SpinnerContainer = styled.div<TSpinnerContainerProps>`
   display: inline-block;
   position: relative;
   width: 30px;
@@ -40,7 +44,7 @@ const SpinnerContainer = styled.div`
 
   & div {
     position: absolute;
-    border: 4px solid ${COLORS.blue400};
+    border: ${({ error }) => (error ? `4px solid ${COLORS.red}` : `4px solid ${COLORS.blue400}`)};
     opacity: 1;
     border-radius: 50%;
     animation: ${ldsRipple} 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;

@@ -1,50 +1,50 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { PodcastContext } from "providers/PodcastProvider"
 import { DescriptionText, EpisodeDetailContainer, EpisodeContainer, Audio, DescriptionTextWrapper } from "./Episode.styled"
 import Layout from "ui/Layout/Layout"
 import { COLORS } from "theme/colors"
-import { IPodcastDetail } from "utils/interfaces/podcast-detail.interface"
+import { IEpisode, IPodcastDetail } from "utils/interfaces/podcast-detail.interface"
 import DetailPodcastCard from "ui/components/Cards/DetailPodcastCard/DetailPodcastCard"
 import Typography, { Sizes, Types } from "ui/components/Typography/Typography"
 import { EpisodeLogic } from "./Episode.logic"
-import { EPISODE } from "temp/episode.mock"
 import { ROOT_ROUTES } from "utils/constants/route.constants"
 import ReactHtmlParser from "react-html-parser"
+import { HeaderContext } from "providers/HeaderProvider"
 
 const Episode = () => {
   const navigate = useNavigate()
-  const { podcastId } = useParams()
+  const { podcastId, episodeId } = useParams()
 
-  const { setLoading } = useContext(PodcastContext)
+  const { setLoading } = useContext(HeaderContext)
 
   const [podcastDetail, setPodcastDetail] = useState<IPodcastDetail>()
+  const [episodeDetail, setEpisodeDetail] = useState<IEpisode>()
 
   const hanldeOnClick = () => {
     navigate(`${ROOT_ROUTES.PODCAST}/${podcastId}`)
   }
 
   useEffect(() => {
-    if (podcastId) EpisodeLogic.getPodcastDetail({ podcastId, setPodcastDetail, setLoading })
+    if (podcastId && episodeId) EpisodeLogic.getPodcastDetail({ podcastId, episodeId, setPodcastDetail, setEpisodeDetail, setLoading })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [podcastId])
+  }, [podcastId, episodeId])
 
   return (
     <Layout>
-      {podcastDetail && (
+      {podcastDetail && episodeDetail && (
         <EpisodeContainer>
           <DetailPodcastCard podcastDetail={podcastDetail} onClick={hanldeOnClick} />
           <EpisodeDetailContainer>
             <Typography type={Types.H3} color={COLORS.gray1000}>
-              {EPISODE.title}
+              {episodeDetail.title}
             </Typography>
             <DescriptionTextWrapper>
               <DescriptionText size={Sizes.S} style={{ fontStyle: "italic" }}>
-                {ReactHtmlParser(EPISODE.description)}
+                {ReactHtmlParser(episodeDetail.description)}
               </DescriptionText>
             </DescriptionTextWrapper>
 
-            <Audio src={EPISODE.previewUrl} controls></Audio>
+            <Audio src={episodeDetail.link} controls></Audio>
           </EpisodeDetailContainer>
         </EpisodeContainer>
       )}

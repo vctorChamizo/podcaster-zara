@@ -3,11 +3,13 @@ import podcastService from "services/Podcast.service"
 import { EStorageItems, PODCASTS_EXPIRE_INTERVAL } from "utils/constants/storage.constants"
 import Expirestorage from "utils/functions/storage.functions"
 import { IPodcastDetail } from "utils/interfaces/podcast-detail.interface"
+import { parserEpisode, parserPodcast, parserResponse } from "utils/functions/parser.fucntions"
 
 interface IGetPodcastDetail {
   podcastId: string
   setPodcastDetail: Dispatch<SetStateAction<IPodcastDetail | undefined>>
   setLoading: Dispatch<SetStateAction<boolean>>
+  setError: Dispatch<SetStateAction<boolean>>
 }
 
 export const PodcastLogic = {
@@ -25,10 +27,19 @@ export const PodcastLogic = {
 
       if (response.resultCount === 0) return
 
-      Expirestorage.setItem(EStorageItems.PODCAST_DETAILS + podcastId, JSON.stringify(response.results[0]), PODCASTS_EXPIRE_INTERVAL)
-      data.setPodcastDetail(response.results[0])
+      const podcastResponse = response.results[0]
+
+      const { description, item } = await parserResponse(response.results[0].feedUrl)
+
+      const episodes = parserEpisode(item)
+      const _podcast = parserPodcast(podcastResponse, description, episodes)
+
+      Expirestorage.setItem(EStorageItems.PODCAST_DETAILS + podcastId, JSON.stringify(_podcast), PODCASTS_EXPIRE_INTERVAL)
+
+      data.setPodcastDetail(_podcast)
     } catch (error) {
       console.error(`ERROR - Podcast ${data.podcastId} - ${error}`)
+      data.setError(true)
     } finally {
       data.setLoading(false)
     }
