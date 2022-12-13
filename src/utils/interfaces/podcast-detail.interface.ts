@@ -3,6 +3,28 @@ export interface IPodcastDetailResponse {
   resultCount: number
 }
 
+type TMedia = {
+  length: string
+  type: string
+  url: string
+}
+
+export interface IEpisode {
+  guid: string
+  author: string
+  created: number
+  description: string
+  enclosures: TMedia[]
+  itunes_duration: string
+  published: number
+  title: string
+}
+
+export interface IFeedURLResponse {
+  description: string
+  items: IEpisode[]
+}
+
 export interface IPodcastDetail {
   wrapperType: string
   kind: string
@@ -17,6 +39,7 @@ export interface IPodcastDetail {
   artistViewUrl: string
   collectionViewUrl: string
   feedUrl: string
+  feedUrlReponse?: IFeedURLResponse
   trackViewUrl: string
   artworkUrl30: string
   artworkUrl60: string

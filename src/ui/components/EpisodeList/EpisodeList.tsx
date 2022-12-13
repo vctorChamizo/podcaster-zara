@@ -1,15 +1,8 @@
 import React from "react"
 import { COLORS } from "theme/colors"
-import { formatDurationByMs } from "utils/functions/time.functions"
+import { IEpisode } from "utils/interfaces/podcast-detail.interface"
 import { Types, Weights } from "../Typography/Typography"
-import { Table, TableRow, TableHader, ItemList } from "./EpisodeList.styled"
-
-export interface IEpisode {
-  id: string
-  title: string
-  duration: number
-  date: Date
-}
+import { Table, TableHader, ItemList } from "./EpisodeList.styled"
 
 interface IEpisodeListProps {
   episodes: IEpisode[]
@@ -30,7 +23,7 @@ const EpisodeList: React.FC<IEpisodeListProps> = ({ onClick, episodes }) => {
           Duration
         </ItemList>
       </TableHader>
-      {episodes.map((episode, index) => (
+      {/* {episodes.map((episode, index) => (
         <TableRow index={index} key={episode.id} onClick={() => onClick(episode.id)}>
           <ItemList style={{ width: "70%" }} type={Types.P} color={COLORS.blue400}>
             {episode.title}
@@ -42,7 +35,7 @@ const EpisodeList: React.FC<IEpisodeListProps> = ({ onClick, episodes }) => {
             {formatDurationByMs(episode.duration)}
           </ItemList>
         </TableRow>
-      ))}
+      ))} */}
     </Table>
   )
 }
