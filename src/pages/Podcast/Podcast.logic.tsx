@@ -34,8 +34,6 @@ export const PodcastLogic = {
       const episodes = parserEpisode(item)
       const _podcast = parserPodcast(podcastResponse, description, episodes)
 
-      console.log(_podcast)
-
       Expirestorage.setItem(EStorageItems.PODCAST_DETAILS + podcastId, JSON.stringify(_podcast), PODCASTS_EXPIRE_INTERVAL)
 
       data.setPodcastDetail(_podcast)
